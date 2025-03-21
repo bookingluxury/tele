@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fake Telegram Chat Interface</title>
+    <title>Telegram Chat Interface</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -90,27 +90,23 @@
     }
   </style>
  
-    <script>
+  <script>
   async function loadMessages() {
-    const res = await fetch("/api/messages");
+    const res = await fetch("https://tele-fpfj.onrender.com/api/messages"); // Thay link API của bạn
     const messages = await res.json();
     const container = document.getElementById("messages");
     container.innerHTML = "";
 
     messages.forEach(msg => {
-      const userDiv = document.createElement("div");
-      userDiv.className = "message user-message";
-      userDiv.innerText = `👤 ${msg.user_id}: ${msg.user_message}`;
-      container.appendChild(userDiv);
-
-      const botDiv = document.createElement("div");
-      botDiv.className = "message other-message";
-      botDiv.innerText = `🤖 ${msg.bot_response}`;
-      container.appendChild(botDiv);
+      const messageDiv = document.createElement("div");
+      messageDiv.className = "message";
+      messageDiv.innerText = `👤 ${msg.user_id}: ${msg.user_message}`;
+      container.appendChild(messageDiv);
     });
   }
 
-  // Load messages when the page loads
+  // Tự động tải tin nhắn mới mỗi 5 giây
+  setInterval(loadMessages, 5000);
   window.onload = loadMessages;
 </script>
 
