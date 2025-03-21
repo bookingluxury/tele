@@ -89,5 +89,29 @@
       border-bottom-left-radius: 0;
     }
   </style>
-  <script></script>
+ 
+    <script>
+  async function loadMessages() {
+    const res = await fetch("/api/messages");
+    const messages = await res.json();
+    const container = document.getElementById("messages");
+    container.innerHTML = "";
+
+    messages.forEach(msg => {
+      const userDiv = document.createElement("div");
+      userDiv.className = "message user-message";
+      userDiv.innerText = `👤 ${msg.user_id}: ${msg.user_message}`;
+      container.appendChild(userDiv);
+
+      const botDiv = document.createElement("div");
+      botDiv.className = "message other-message";
+      botDiv.innerText = `🤖 ${msg.bot_response}`;
+      container.appendChild(botDiv);
+    });
+  }
+
+  // Load messages when the page loads
+  window.onload = loadMessages;
+</script>
+
 </html>
