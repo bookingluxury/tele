@@ -90,9 +90,9 @@
     }
   </style>
  
-  <script>
+<script>
   async function loadMessages() {
-    const res = await fetch("https://tele-fpfj.onrender.com/api/messages"); // Thay link API của bạn
+    const res = await fetch("http://127.0.0.1:5000/api/messages");  // API Local
     const messages = await res.json();
     const container = document.getElementById("messages");
     container.innerHTML = "";
@@ -109,5 +109,6 @@
   setInterval(loadMessages, 5000);
   window.onload = loadMessages;
 </script>
+
 
 </html>
