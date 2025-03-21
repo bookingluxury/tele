@@ -100,7 +100,7 @@
     messages.forEach(msg => {
       const messageDiv = document.createElement("div");
       messageDiv.className = "message";
-      messageDiv.innerText = `👤 ${msg.user_id}: ${msg.user_message}`;
+      messageDiv.innerHTML = `<strong>👤 ${msg.first_name} (@${msg.username}):</strong> ${msg.user_message}`;
       container.appendChild(messageDiv);
     });
   }
